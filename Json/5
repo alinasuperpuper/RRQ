@@ -1,0 +1,15 @@
+import json
+
+# Загрузка данных из JSON-файла
+with open("test.json", "r", encoding="utf-8") as json_file:
+    data = json.load(json_file)
+
+# Изменение значений
+data["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]["metaDataProperty"]["GeocoderMetaData"]["Address"]["country_code"] = "RUS"
+data["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]["metaDataProperty"]["GeocoderMetaData"]["Address"]["postal_code"] = "675004"
+data["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]["metaDataProperty"]["GeocoderMetaData"]["Address"]["formatted"] = "Амурская область, г. Благовещенск, ул. Ленина, 104"
+
+# Перезапись JSON-файла с изменениями
+with open("test.json", "w", encoding="utf-8") as json_file:
+    json.dump(data, json_file, ensure_ascii=False, indent=4)
+print("Файл перезаписан.")
