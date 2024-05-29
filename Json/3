@@ -1,0 +1,35 @@
+import json
+
+while True:
+    # Открытие JSON-файла и чтение данных
+    with open("my_data.json", "r") as json_file:
+        data = json.load(json_file)
+
+    # Вывод текущих данных
+    print("\nТекущие данные:")
+    for key, value in data.items():
+        print(f"{key}: {value}")
+
+    # Получение от пользователя ключа, который нужно изменить
+    key_to_change = input("\nВведите ключ, который вы хотите изменить (для выхода введите 'exit'): ")
+
+    # Проверка, является ли команда для выхода
+    if key_to_change.lower() == 'exit':
+        print("Программа завершена.")
+        break
+
+    # Проверка, существует ли такой ключ в данных
+    if key_to_change in data:
+        # Получение нового значения от пользователя
+        new_value = input(f"Введите новое значение для ключа '{key_to_change}': ")
+
+        # Изменение значения ключа
+        data[key_to_change] = new_value
+
+        # Перезапись данных в JSON-файл
+        with open("my_data.json", "w") as json_file:
+            json.dump(data, json_file, indent=4)
+        
+        print("Данные успешно обновлены.")
+    else:
+        print("Указанный ключ не найден в данных.")
