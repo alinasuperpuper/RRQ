@@ -1,0 +1,19 @@
+import random  # Импортируем модуль random для выбора случайной строки
+import os      # Импортируем модуль os для проверки существования файла
+
+def print_random_line_from_file(filename):
+    if os.path.exists(filename):  # Проверяем, существует ли файл
+        with open(filename, 'r', encoding='utf-8') as file:  # Открываем файл в режиме чтения с кодировкой UTF-8
+            lines = file.readlines()  # Читаем все строки файла в список
+            if lines:  # Проверяем, что список не пуст
+                print(random.choice(lines).strip())  # Выбираем случайную строку и выводим ее без лишних пробелов
+
+# Указываем имя файла
+filename = 'lines.txt'
+
+# Вызываем функцию для печати случайной строки
+print_random_line_from_file(filename)
+
+# Поместить этот скрипт в ту же папку, где находится файл lines.txt и запустить его
+
+# В файле lines.txt должны быть введены какие-либо строки. Если он пуст, программа не будет ничего выводить.
