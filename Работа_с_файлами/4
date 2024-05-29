@@ -1,0 +1,26 @@
+def find_longest_words(filename):
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:  # Открываем файл для чтения
+            words = file.read().splitlines()  # Читаем слова из файла и разделяем их по строкам
+
+            if not words:  # Если список слов пустой, выводим сообщение и завершаем функцию
+                print("Файл пустой")
+                return
+
+            max_length = len(max(words, key=len))  # Находим максимальную длину слова в списке
+            longest_words = [(word, len(word)) for word in words if len(word) == max_length]  # Формируем список кортежей (слово, длина)
+
+            print("Самые длинные слова:")
+            for word, length in longest_words:  # Выводим каждое самое длинное слово и его длину
+                print(f"{word} ({length} символов)")
+    except FileNotFoundError:
+        print("Файл не найден")
+
+# Указываем имя файла
+filename = 'words.txt'
+
+# Вызываем функцию для поиска и вывода самых длинных слов
+find_longest_words(filename)
+
+# Чтобы изменить самое длинное слово, необходимо добавить новое слово в файл words.txt, которое будет длиннее нынешнего слова.
+# Если количество символов у двух длинных слов будут одинаковы, то они будут оба выведены.
