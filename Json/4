@@ -1,0 +1,15 @@
+import json
+
+# Загрузка данных из JSON-файла
+with open("test.json", "r", encoding="utf-8") as json_file:
+    data = json.load(json_file)
+
+# Извлечение информации о стране и координатах
+country = data["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]["metaDataProperty"]["GeocoderMetaData"]["AddressDetails"]["Country"]["CountryName"]
+coordinates = data["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]["Point"]["pos"].split()
+longitude, latitude = map(float, coordinates)
+
+# Вывод результатов
+print("Страна:", country)
+print("Долгота:", longitude)
+print("Широта:", latitude)
