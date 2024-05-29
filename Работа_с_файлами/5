@@ -1,0 +1,30 @@
+def calculate_file_size(filename):
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:  # Открываем файл для чтения
+            text = file.read()  # Читаем весь текст из файла
+
+            # Подсчитываем количество символов в тексте и умножаем на размер одного символа в байтах (8 бит)
+            size_in_bytes = len(text) * 8
+
+            # Преобразуем размер в килобайты, мегабайты, гигабайты и т.д.
+            size_in_kb = size_in_bytes / 1024
+            size_in_mb = size_in_kb / 1024
+            size_in_gb = size_in_mb / 1024
+
+            # Выводим результаты
+            print("Размер текста:")
+            print(f"В байтах: {size_in_bytes} байт")
+            print(f"В килобайтах: {size_in_kb:.2f} KB")
+            print(f"В мегабайтах: {size_in_mb:.2f} MB")
+            print(f"В гигабайтах: {size_in_gb:.2f} GB")
+            
+    except FileNotFoundError:
+        print("Файл не найден")
+
+# Указываем имя файла
+filename = 'input.txt'
+
+# Вызываем функцию для вычисления размера файла
+calculate_file_size(filename)
+
+# Один символ весит 8 бит. В файл input.txt можно ввести меньшее количество символов, чтобы проверить работоспособность программы.
